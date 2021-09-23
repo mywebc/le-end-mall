@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import sun.security.krb5.internal.APOptions;
 
+import java.security.NoSuchAlgorithmException;
+
 /**
  * 用户控制器
  */
@@ -31,7 +33,7 @@ public class UserController {
 
     @PostMapping("/register")
     @ResponseBody
-    public ApiRestResponse register(@RequestParam("username") String username, @RequestParam("password") String password) throws LeMallException {
+    public ApiRestResponse register(@RequestParam("username") String username, @RequestParam("password") String password) throws LeMallException, NoSuchAlgorithmException {
         if (StringUtils.isEmpty(username)) {
             return ApiRestResponse.error(LeMallExceptionEnum.NEED_USER_NAME);
         }
