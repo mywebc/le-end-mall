@@ -9,7 +9,8 @@ public enum LeMallExceptionEnum {
     NEED_PASSWORD(1002, "密码不能为空"),
     NEED_PASSWORD_TOO_SHORT(1003, "密码不能小于8位"),
     NAME_EXISTED(1004, "不允许重名， 注册失败"),
-    INSERT_FAILED(1005, "插入失败，请重试");
+    INSERT_FAILED(1005, "插入失败，请重试"),
+    SYSTEM_ERROR(2000, "系统异常");
 
     /**
      * 异常码

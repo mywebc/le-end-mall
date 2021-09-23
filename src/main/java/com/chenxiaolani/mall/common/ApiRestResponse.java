@@ -38,6 +38,10 @@ public class ApiRestResponse<T> {
         return response;
     }
 
+    public static <T> ApiRestResponse<T> error(Integer code, String msg) {
+        return new ApiRestResponse<>(code, msg);
+    }
+
     public static <T> ApiRestResponse<T> error(LeMallExceptionEnum ex) {
         return new ApiRestResponse<>(ex.getCode(), ex.getMsg());
     }
