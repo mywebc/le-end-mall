@@ -5,7 +5,12 @@ package com.chenxiaolani.mall.exception;
  * 异常枚举
  */
 public enum LeMallExceptionEnum {
-    NEED_USER_NAME(1001, "用户名不能为空");
+    NEED_USER_NAME(1001, "用户名不能为空"),
+    NEED_PASSWORD(1002, "密码不能为空"),
+    NEED_PASSWORD_TOO_SHORT(1003, "密码不能小于8位"),
+    NAME_EXISTED(1004, "不允许重名， 注册失败"),
+    INSERT_FAILED(1005, "插入失败，请重试");
+
     /**
      * 异常码
      */
