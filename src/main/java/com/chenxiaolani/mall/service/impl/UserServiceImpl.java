@@ -45,4 +45,19 @@ public class UserServiceImpl implements UserService {
             throw new LeMallException(LeMallExceptionEnum.INSERT_FAILED);
         }
     }
+
+    @Override
+    public User login(String username, String password) throws LeMallException {
+        String md5Password = null;
+        try {
+            md5Password = MD5Utils.getMD5Str(password);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        User user = userMapper.selectLogin(username, password);
+        if (user == null) {
+            throw new LeMallException(LeMallExceptionEnum.WRONG_PASSWORD);
+        }
+        return user;
+    }
 }

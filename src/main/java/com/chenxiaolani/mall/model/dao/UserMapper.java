@@ -1,6 +1,7 @@
 package com.chenxiaolani.mall.model.dao;
 
 import com.chenxiaolani.mall.model.pojo.User;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -18,4 +19,7 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
 
     User selectByName(String username);
+
+    // 两个参数以上需要用@Param
+    User selectLogin(@Param("username") String username, @Param("password") String password);
 }

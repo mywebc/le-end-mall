@@ -1,6 +1,7 @@
 package com.chenxiaolani.mall.controller;
 
 import com.chenxiaolani.mall.common.ApiRestResponse;
+import com.chenxiaolani.mall.common.Constant;
 import com.chenxiaolani.mall.exception.LeMallException;
 import com.chenxiaolani.mall.exception.LeMallExceptionEnum;
 import com.chenxiaolani.mall.model.pojo.User;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import sun.security.krb5.internal.APOptions;
 
+import javax.servlet.http.HttpSession;
 import java.security.NoSuchAlgorithmException;
 
 /**
@@ -47,5 +49,22 @@ public class UserController {
         userService.register(username, password);
         return ApiRestResponse.success();
     }
+
+    @PostMapping("/login")
+    @ResponseBody
+    public ApiRestResponse login(@RequestParam("username") String username, @RequestParam("password") String password, HttpSession session) throws LeMallException {
+        if (StringUtils.isEmpty(username)) {
+            return ApiRestResponse.error(LeMallExceptionEnum.NEED_USER_NAME);
+        }
+        if (StringUtils.isEmpty(password)) {
+            return ApiRestResponse.error(LeMallExceptionEnum.NEED_PASSWORD);
+        }
+        User user = userService.login(username, password);
+        // 密码不能传回去
+        user.setPassword(null);
+        session.setAttribute(Constant.LE_MALL_USER, user);
+        return ApiRestResponse.success(user);
+    }
+
 
 }

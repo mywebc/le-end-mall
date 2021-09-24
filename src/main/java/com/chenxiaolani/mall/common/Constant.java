@@ -5,4 +5,5 @@ package com.chenxiaolani.mall.common;
  */
 public class Constant {
     public static final String salt = "abc123-==-";
+    public static final String LE_MALL_USER = "le_mall_user";
 }
