@@ -3,7 +3,7 @@ package com.chenxiaolani.mall.exception;
 /**
  * 统一的异常
  */
-public class LeMallException extends Exception {
+public class LeMallException extends RuntimeException {
     private final Integer code;
     private final String msg;
 

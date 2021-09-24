@@ -14,4 +14,6 @@ public interface UserService {
     void register(String username, String password) throws LeMallException, NoSuchAlgorithmException;
 
     User login(String username, String password) throws LeMallException;
+
+    boolean checkAdminRole(User user);
 }

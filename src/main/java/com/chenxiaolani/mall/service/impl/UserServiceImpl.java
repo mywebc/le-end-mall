@@ -54,10 +54,16 @@ public class UserServiceImpl implements UserService {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-        User user = userMapper.selectLogin(username, password);
+        User user = userMapper.selectLogin(username, md5Password);
         if (user == null) {
             throw new LeMallException(LeMallExceptionEnum.WRONG_PASSWORD);
         }
         return user;
+    }
+
+    @Override
+    public boolean checkAdminRole(User user) {
+        //1是普通用户，2是管理员
+        return user.getRole().equals(2);
     }
 }
