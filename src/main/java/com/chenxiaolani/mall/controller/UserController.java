@@ -6,6 +6,7 @@ import com.chenxiaolani.mall.exception.LeMallException;
 import com.chenxiaolani.mall.exception.LeMallExceptionEnum;
 import com.chenxiaolani.mall.model.pojo.User;
 import com.chenxiaolani.mall.service.UserService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -33,6 +34,7 @@ public class UserController {
         return userService.getUser();
     }
 
+    @ApiOperation("注册")
     @PostMapping("/register")
     @ResponseBody
     public ApiRestResponse register(@RequestParam("username") String username, @RequestParam("password") String password) throws LeMallException, NoSuchAlgorithmException {
@@ -50,6 +52,7 @@ public class UserController {
         return ApiRestResponse.success();
     }
 
+    @ApiOperation("登录")
     @PostMapping("/login")
     @ResponseBody
     public ApiRestResponse login(@RequestParam("username") String username, @RequestParam("password") String password, HttpSession session) throws LeMallException {
