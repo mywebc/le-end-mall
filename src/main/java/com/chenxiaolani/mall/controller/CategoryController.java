@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 /**
  * 目录controller
@@ -31,13 +32,13 @@ public class CategoryController {
 
     @PostMapping("admin/category/add")
     @ResponseBody
-    public ApiRestResponse addCategory(HttpSession session, @RequestBody AddCategoryReq addCategoryReq) {
-        if (addCategoryReq.getName() == null ||
-                addCategoryReq.getOrderNum() == null ||
-                addCategoryReq.getParentId() == null ||
-                addCategoryReq.getType() == null) {
-            return ApiRestResponse.error(LeMallExceptionEnum.PARAMS_NOT_NULL);
-        }
+    public ApiRestResponse addCategory(HttpSession session, @Valid @RequestBody AddCategoryReq addCategoryReq) {
+//        if (addCategoryReq.getName() == null ||
+//                addCategoryReq.getOrderNum() == null ||
+//                addCategoryReq.getParentId() == null ||
+//                addCategoryReq.getType() == null) {
+//            return ApiRestResponse.error(LeMallExceptionEnum.PARAMS_NOT_NULL);
+//        }
         User currentUser = (User) session.getAttribute(Constant.LE_MALL_USER);
         // 校验是否登录
         if (currentUser == null) {

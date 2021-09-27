@@ -17,6 +17,7 @@ public enum LeMallExceptionEnum {
     PARAMS_NOT_NULL(1010, "参数不能为空"),
 
     CATEGORY_FAILED(1011, "新增失败"),
+    REQUEST_PARAMS_ERROR(1012, "新增失败"),
 
     SYSTEM_ERROR(2000, "系统异常");
 
