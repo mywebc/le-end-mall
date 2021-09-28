@@ -54,7 +54,7 @@ public class CategoryController {
         }
     }
 
-    @ApiOperation("后台更新目录目录")
+    @ApiOperation("后台更新目录")
     @PostMapping("admin/category/update")
     @ResponseBody
     public ApiRestResponse updateCategory(HttpSession session, @Valid @RequestBody UpdateCategoryReq updateCategoryReq) {
@@ -75,6 +75,13 @@ public class CategoryController {
         } else {
             return ApiRestResponse.error(LeMallExceptionEnum.NEED_ADMIN);
         }
+    }
+
+    @ApiOperation("后台删除目录")
+    @PostMapping("admin/category/delete")
+    @ResponseBody
+    public ApiRestResponse deleteCategory() {
+        return null;
     }
 
 }
