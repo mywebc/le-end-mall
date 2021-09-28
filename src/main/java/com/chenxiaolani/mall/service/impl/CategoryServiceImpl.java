@@ -34,4 +34,21 @@ public class CategoryServiceImpl implements CategoryService {
             throw new LeMallException(LeMallExceptionEnum.CATEGORY_FAILED);
         }
     }
+
+    @Override
+    public void update(Category updateCategory) {
+        if (updateCategory.getName() != null) {
+            Category categoryOld = categoryMapper.selectByName(updateCategory.getName());
+            if (categoryOld != null && !categoryOld.getId().equals(updateCategory.getId())) {
+                // 根据名字查找出来的category, 并且id还不一样的话，说明重名了
+                throw new LeMallException(LeMallExceptionEnum.NAME_EXISTED);
+            }
+            // 执行更新
+            int count = categoryMapper.updateByPrimaryKeySelective(updateCategory);
+            if (count == 0) {
+                throw new LeMallException(LeMallExceptionEnum.UPDATE_FAILED);
+            }
+        }
+    }
+
 }
