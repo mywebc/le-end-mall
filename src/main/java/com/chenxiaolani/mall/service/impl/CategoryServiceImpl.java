@@ -51,4 +51,17 @@ public class CategoryServiceImpl implements CategoryService {
         }
     }
 
+    @Override
+    public void delete(Integer id) {
+        Category categoryOld = categoryMapper.selectByPrimaryKey(id);
+        if (categoryOld == null) {
+            throw new LeMallException(LeMallExceptionEnum.DELETE_FAILED);
+        }
+        int count = categoryMapper.deleteByPrimaryKey(id);
+        if (count == 0) {
+            throw new LeMallException(LeMallExceptionEnum.DELETE_FAILED);
+        }
+    }
+
+
 }
