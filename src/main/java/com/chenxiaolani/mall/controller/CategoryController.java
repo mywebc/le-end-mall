@@ -2,7 +2,6 @@ package com.chenxiaolani.mall.controller;
 
 import com.chenxiaolani.mall.common.ApiRestResponse;
 import com.chenxiaolani.mall.common.Constant;
-import com.chenxiaolani.mall.exception.LeMallException;
 import com.chenxiaolani.mall.exception.LeMallExceptionEnum;
 import com.chenxiaolani.mall.model.pojo.Category;
 import com.chenxiaolani.mall.model.pojo.User;
@@ -10,15 +9,12 @@ import com.chenxiaolani.mall.model.request.AddCategoryReq;
 import com.chenxiaolani.mall.model.request.UpdateCategoryReq;
 import com.chenxiaolani.mall.service.CategoryService;
 import com.chenxiaolani.mall.service.UserService;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.system.ApplicationPid;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -84,6 +80,14 @@ public class CategoryController {
     public ApiRestResponse deleteCategory(@RequestParam Integer id) {
         categoryService.delete(id);
         return ApiRestResponse.success();
+    }
+
+    @ApiOperation("后台目录列表")
+    @GetMapping("admin/category/list")
+    @ResponseBody
+    public ApiRestResponse listCategoryForAdmin(@RequestParam Integer pageNum,@RequestParam Integer pageSize) {
+        PageInfo pageInfo = categoryService.listForAdmin(pageNum, pageSize);
+        return ApiRestResponse.success(pageInfo);
     }
 
 }

@@ -5,10 +5,15 @@ import com.chenxiaolani.mall.exception.LeMallExceptionEnum;
 import com.chenxiaolani.mall.model.dao.CategoryMapper;
 import com.chenxiaolani.mall.model.pojo.Category;
 import com.chenxiaolani.mall.model.request.AddCategoryReq;
+import com.chenxiaolani.mall.model.vo.CategoryVO;
 import com.chenxiaolani.mall.service.CategoryService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * CategoryServiceImpl
@@ -63,5 +68,11 @@ public class CategoryServiceImpl implements CategoryService {
         }
     }
 
-
+    @Override
+    public PageInfo listForAdmin(Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize, "type, order_num");
+        List<Category> categoryList = categoryMapper.selectList();
+        PageInfo pageInfo = new PageInfo(categoryList);
+        return pageInfo;
+    }
 }

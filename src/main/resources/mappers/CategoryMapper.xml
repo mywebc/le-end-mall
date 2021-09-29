@@ -120,5 +120,10 @@
         from le_mall_category
         where name = #{name,jdbcType=INTEGER}
     </select>
+    <select id="selectList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from le_mall_category
+    </select>
 
 </mapper>
