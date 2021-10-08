@@ -36,7 +36,7 @@ public class CategoryServiceImpl implements CategoryService {
         }
         int count = categoryMapper.insertSelective(category);
         if (count == 0) {
-            throw new LeMallException(LeMallExceptionEnum.CATEGORY_FAILED);
+            throw new LeMallException(LeMallExceptionEnum.CREATE_FAILED);
         }
     }
 

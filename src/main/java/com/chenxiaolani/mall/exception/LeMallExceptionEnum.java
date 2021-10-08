@@ -15,7 +15,7 @@ public enum LeMallExceptionEnum {
     UPDATE_FAILED(1008, "更新失败"),
     NEED_ADMIN(1009, "无管理员权限"),
     PARAMS_NOT_NULL(1010, "参数不能为空"),
-    CATEGORY_FAILED(1011, "新增失败"),
+    CREATE_FAILED(1011, "新增失败"),
     REQUEST_PARAMS_ERROR(1012, "参数错误"),
     DELETE_FAILED(1013, "删除失败"),
     SYSTEM_ERROR(2000, "系统异常");
